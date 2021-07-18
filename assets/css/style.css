@@ -1,7 +1,7 @@
 :root{
     --primary-color: #060425;
     --secondary-color: steelblue;
-    /* --tertiary-color: ; */
+    --tertiary-color: whitesmoke;
 }
 
 *{
@@ -42,7 +42,7 @@ header nav{
 }
 
 #highscores:hover{
-    background-color: whitesmoke;
+    background-color: var(--tertiary-color);
     border-radius: 11px;
     color: var(--primary-color);
 }
@@ -60,7 +60,7 @@ main h1{
     text-align: center;
     margin: 25px auto;
     padding: 0 0 5px 0;
-    border-bottom: solid whitesmoke 3px;
+    border-bottom: solid var(--tertiary-color) 3px;
     width: 62%;
     border-radius: 5px;
     font-family: Sonsie One;
@@ -79,11 +79,28 @@ main h1{
 }
 
 .quiz-container h2{
-    color: whitesmoke;
+    color: var(--tertiary-color);
+    margin: 0 auto 25px 0;
 }
 
 .quiz-container img{
     width: 45%;
+    margin: 0 auto 40px auto;
+}
+
+#take-quiz {
+    background: var(--primary-color);
+    padding: 7px 15px;
+    border-radius: 12px;
+    border: none;
+    font-family: 'Alata';
+    font-size: 1.5em;
+    color: var(--tertiary-color);
+}
+
+#take-quiz:hover {
+    color: var(--primary-color);
+    background: var(--tertiary-color);
 }
 
 footer {
@@ -92,7 +109,11 @@ footer {
     justify-content: center;
     align-content: center;
     align-items: center;
-    /*background: linear-gradient(0deg, rgba(103, 59, 134,.72), transparent);*/
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(0deg, rgb(70 58 255 / 80%), transparent);
 }
 
 footer h4 {
