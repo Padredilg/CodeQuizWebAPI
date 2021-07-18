@@ -1,3 +1,60 @@
+:root{
+    --primary-color: #060425;
+    --secondary-color: steelblue;
+    /* --tertiary-color: ; */
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header{
+    background-color: var(--primary-color);
+}
+
+header nav{
+    margin: 0 auto;
+    padding: 12px 15px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#highscores {
+    background: none;
+    border: none;
+    font-size: 1.075em;
+    color: white;
+}
+
+body{
+    background-color: var(--secondary-color);
+}
+
+main{
+    display: flex;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+main h1{
+    width: 100%;
+    text-align: center;
+    margin: 25px auto;
+}
+
+.quiz-container {
+    text-align: center;
+}
+
 footer {
     display: flex;
     flex-wrap: wrap;

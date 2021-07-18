@@ -2,7 +2,7 @@
 var viewHighScoresBtn = document.querySelector("#highscores");
 
 //this var represents the Take Quiz button
-var takeQuizBtn = document.querySelector("#takeQuiz");
+var takeQuizBtn = document.querySelector("#take-quiz");
 
 //function generateHighScores {
     //write function to generate highscores in the main.  
