@@ -17,3 +17,6 @@ viewHighScoresBtn.addEventListener("click", generateHighScores);
 
 //when Take Quiz is clicked, Start Quiz
 viewHighScoresBtn.addEventListener("click", startQuiz);
+
+//We can make a prepare yourself countdown when quiz will start,
+//and only then quiz starts and timer starts
