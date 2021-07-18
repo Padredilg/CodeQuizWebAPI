@@ -33,15 +33,16 @@ header nav{
     align-items: center;
 }
 
-#highscores {
+.nav-btn {
     background: none;
     border: none;
     font-size: 1.075em;
     color: white;
     padding: 3px 9px;
+    text-decoration: none;
 }
 
-#highscores:hover{
+.nav-btn:hover{
     background-color: var(--tertiary-color);
     border-radius: 11px;
     color: var(--primary-color);
@@ -58,7 +59,7 @@ main{
 
 main h1{
     text-align: center;
-    margin: 25px auto;
+    margin: 30px auto;
     padding: 0 0 5px 0;
     border-bottom: solid var(--tertiary-color) 3px;
     width: 62%;
@@ -85,7 +86,7 @@ main h1{
 
 .quiz-container img{
     width: 45%;
-    margin: 0 auto 40px auto;
+    margin: 5px auto 50px auto;
 }
 
 #take-quiz {
