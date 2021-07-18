@@ -1,0 +1,16 @@
+footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    /*background: linear-gradient(0deg, rgba(103, 59, 134,.72), transparent);*/
+}
+
+footer h4 {
+    margin: 25px auto 10px auto;
+    font-size: 1.1em;
+    font-style: italic;
+    font-weight: normal;
+    color: rgb(0,0,0);
+}
