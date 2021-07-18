@@ -16,6 +16,7 @@ body{
     flex-direction: column;
     justify-content: space-between;
     font-family: Alata;
+    margin-bottom: 5vw;
 }
 
 header{
@@ -37,7 +38,7 @@ header nav{
     background: none;
     border: none;
     font-size: 1.075em;
-    color: white;
+    color: var(--tertiary-color);
     padding: 3px 9px;
     text-decoration: none;
 }
@@ -110,10 +111,11 @@ footer {
     justify-content: center;
     align-content: center;
     align-items: center;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    height:50px;
     background: linear-gradient(0deg, rgb(70 58 255 / 80%), transparent);
 }
 
@@ -122,5 +124,5 @@ footer h4 {
     font-size: 1.1em;
     font-style: italic;
     font-weight: normal;
-    color: rgb(0,0,0);
+    color: black;
 }
