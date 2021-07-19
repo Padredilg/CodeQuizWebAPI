@@ -89,7 +89,7 @@ main h1{
 
 .quiz-container img{
     width: 20vw;
-    margin: 5px auto 50px auto;
+    margin: 5px auto 30px auto;
 }
 
 #questions-wrapper{
@@ -112,30 +112,15 @@ main h1{
     align-items: center;
 }
 
-#take-quiz {
-    background: var(--primary-color);
-    padding: 7px 15px;
-    border-radius: 12px;
-    border: none;
-    font-family: 'Alata';
-    font-size: 1.5em;
-    color: var(--tertiary-color);
-}
-
-#take-quiz:hover {
-    color: var(--primary-color);
-    background: var(--tertiary-color);
-}
-
 .choice {
     background: var(--primary-color);
-    padding: 7px 15px;
+    padding: 6px 15px;
     border-radius: 12px;
     border: none;
     font-family: 'Alata';
     font-size: 1.5em;
     color: var(--tertiary-color);
-    margin: 9px auto;
+    margin: 7px auto;
     width: 35%;
 }
 
