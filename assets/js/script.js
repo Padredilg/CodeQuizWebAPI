@@ -3,12 +3,21 @@ var takeQuizBtn = document.querySelector("#take-quiz");
 var buttonsEl = document.querySelector("#buttons");
 var timerEl = document.querySelector("#timer");
 var questionEl = document.querySelector("#question");
+var sectionTitleEl = document.querySelector("#section-title");
+
+var playerName;
+var finalScore = 0;
+var timeRemaining = 0;
 
 var startQuiz = function() {
     //remove takeQuiz button
     takeQuizBtn.remove();
 
-    questionEl.textContent = "Quiz will start in 5";
+    //call getPlayerName for player to input name
+    playerName = getPlayerName();
+    //remove input box
+
+    questionEl.textContent = "Quiz starts in 3";
 
     var startingIn = 3;
     var interval = setInterval(function(){
@@ -22,11 +31,12 @@ var startQuiz = function() {
             questions();
         }
         else{
-            questionEl.textContent = "Quiz will start in " + startingIn;
+            questionEl.textContent = "Quiz starts in " + startingIn;
         }
     },1000);   
 }
 
+//make this function work!
 var questions = function(){
 
     var numQuestions = 4;
@@ -42,7 +52,7 @@ var questions = function(){
         switch (i) {
             case 1:
                 questionEl.textContent = "Sample Question 1";
-                document.querySelector("#section-title").textContent = "Q " + i + "/" + numQuestions;
+                sectionTitleEl.textContent = "Q " + i + "/" + numQuestions;
                 document.getElementById("brain").src="./assets/images/thinking-brain.png";
 
                 //button 1                
@@ -82,17 +92,17 @@ var questions = function(){
                 break;
             case 2:
                 questionEl.textContent = "Sample Question 2";
-                document.querySelector("#section-title").textContent = "Q " + i + "/" + numQuestions;
+                sectionTitleEl.textContent = "Q " + i + "/" + numQuestions;
                 
                 break;
             case 3:
                 questionEl.textContent = "Sample Question 3";
-                document.querySelector("#section-title").textContent = "Q " + i + "/" + numQuestions;
+                sectionTitleEl.textContent = "Q " + i + "/" + numQuestions;
 
                 break;
             case 4:
                 questionEl.textContent = "Sample Question 4";
-                document.querySelector("#section-title").textContent = "Q " + i + "/" + numQuestions;
+                sectionTitleEl.textContent = "Q " + i + "/" + numQuestions;
 
                 break;
           }
@@ -110,7 +120,7 @@ var questions = function(){
 var startTimer = function(){
     timerEl.textContent = "Time Left: 60s";
 
-    var timeLeft = 3;
+    var timeLeft = 2;
     var interval = setInterval(function(){
         timeLeft --;
         if (timeLeft === 0) {
@@ -118,6 +128,7 @@ var startTimer = function(){
             //remove timer
             timerEl.remove();
             //change question to time's up!
+            questionEl.className = "ending-text";
             questionEl.textContent = "Oops! Time's Up!"
             //include logic to remove all buttons
 
@@ -131,35 +142,47 @@ var startTimer = function(){
 }
 
 var endQuiz = function(){
-    var endingIn = 3;
+    var endingIn = 4;
     var interval = setInterval(function(){
         endingIn --;
         if (endingIn === 0) {
             clearInterval(interval);
-            //create input to collect person's initial
-            questionEl.textContent = "Congratulations!";
-            //call getPlayerName for player to input name
-            //var playerName = getPlayerName();
+            questionEl.textContent = "Thank you for playing " + playerName + "! Your final score was " + finalScore + "!";
 
             //call recordData
             //recordData(playerName, score);
 
             //call playAgain function
-            //playAgain();
+            playAgain();
         }
     },1000);
-
-
-    //call recordData function that takes persons name and score as parameters and store them in localStorage
 }
 
-//var playerName = function(){};
+var getPlayerName = function(){
+
+    var nameInputed = "JanPeasant";
+    //name must be between 1 and 12 chars
+
+    //create input box to collect name from user.
+
+    return nameInputed;
+};
 
 //var recordData = function(){};
 
-// var playAgain = function(){
-//     //create two buttons: Play Again and See Highest scores
-// };
+var playAgain = function(){
+    var playAgainIn = 5;
+    var interval = setInterval(function(){
+        playAgainIn --;
+        if (playAgainIn === 0) {
+            clearInterval(interval);
+            questionEl.textContent = "Would you like to play again " + playerName + "?";
+
+            //create two buttons: Play Again and See Highest scores
+
+        }
+    },1000);
+};
 
 //when Take Quiz is clicked, Start Quiz
 takeQuizBtn.addEventListener("click", startQuiz);

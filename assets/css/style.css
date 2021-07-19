@@ -161,3 +161,9 @@ footer h4 {
     position: fixed;
     right: 5px;
 }
+
+.ending-text{
+    transform: scale(2);
+    color: var(--tertiary-color);
+    margin-bottom: 15px;
+}
