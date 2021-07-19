@@ -70,6 +70,7 @@ main h1{
 }
 
 .quiz-container {
+    width: 100%;
     text-align: center;
     margin: 0 auto;
     display: flex;
@@ -82,17 +83,33 @@ main h1{
 
 .quiz-container h2{
     color: var(--tertiary-color);
-    margin: 0 auto 25px 0;
+    margin: 0 auto 25px auto;
+    text-align: center;
 }
 
 .quiz-container img{
-    width: 45%;
+    width: 20vw;
     margin: 5px auto 50px auto;
 }
 
-.quiz-container div h3 {
+#questions-wrapper{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.questions-wrapper h3 {
     margin: 0 0 15px 0;
     color: var(--primary-color);
+}
+
+#buttons{
+    width: 100%;
+    margin: 0px auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
 #take-quiz {
@@ -118,6 +135,8 @@ main h1{
     font-family: 'Alata';
     font-size: 1.5em;
     color: var(--tertiary-color);
+    margin: 9px auto;
+    width: 35%;
 }
 
 .choice:hover {
