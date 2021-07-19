@@ -195,9 +195,8 @@ footer h4 {
     align-content: center;
 }
 
-.scores-list li{
+.scores-list h2{
     color: black;
     width: fit-content;
-    list-style: none;
     margin: 0 0 10px 0;
 }

@@ -10,7 +10,7 @@ var formEl = document.querySelector("#collect-name");
 var playerName = "";
 var finalScore = 0;
 //var currentQuestion = -1;
-var timeLeft = 5;
+var timeLeft = 2;
 var questionsArr = [
     {
         question: 'Commonly used data types do NOT include:',
@@ -180,6 +180,9 @@ var endQuiz = function(){
     var endingIn = 3;
     questionEl.className = "ending-text";
 
+    //call recordData
+    recordData();
+
     if(timeLeft>0){
         questionEl.textContent = "Congratulations for finishing the quiz!"
         var interval = setInterval(function(){
@@ -187,9 +190,6 @@ var endQuiz = function(){
             if (endingIn === 0) {
                 clearInterval(interval);
                 questionEl.textContent = "Thank you for playing " + playerName + "! Your final score was " + finalScore + "!";
-
-                //call recordData
-                recordData(playerName, finalScore);
 
                 //call playAgain function
                 playAgain();
@@ -204,9 +204,6 @@ var endQuiz = function(){
                 clearInterval(interval);
                 questionEl.textContent = "Thank you for playing " + playerName + "! Your final score was " + finalScore + "!";
 
-                //call recordData
-                recordData(playerName, finalScore);
-
                 //call playAgain function
                 playAgain();
             }
@@ -216,11 +213,18 @@ var endQuiz = function(){
     
 }
 
-var recordData = function(name, score){
-    console.log(name + score)
-    localStorage.setItem("name", name);
-    localStorage.setItem("score", score);
-};
+var recordData = function(){
+    var lastScore = localStorage.getItem("score");
+
+    if(lastScore === null){
+        localStorage.setItem("name", playerName);
+        localStorage.setItem("score", finalScore);
+    }
+    else if(finalScore > lastScore){
+        localStorage.setItem("name", playerName);
+        localStorage.setItem("score", finalScore);
+    }
+}
 
 var playAgain = function(){
     var playAgainIn = 5;
