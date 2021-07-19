@@ -187,7 +187,7 @@ var endQuiz = function(){
             endingIn --;
             if (endingIn === 0) {
                 clearInterval(interval);
-                questionEl.textContent = "Thank you for playing " + playerName + "! Your final score was " + finalScore + "!";
+                questionEl.textContent = "Thank you for taking the quiz " + playerName + "! Your final score was " + finalScore + "!";
 
                 //call playAgain function
                 playAgain();
@@ -200,7 +200,7 @@ var endQuiz = function(){
             endingIn --;
             if (endingIn === 0) {
                 clearInterval(interval);
-                questionEl.textContent = "Thank you for playing " + playerName + "! Your final score was " + finalScore + "!";
+                questionEl.textContent = "Thank you for taking the quiz " + playerName + "! Your final score was " + finalScore + "!";
 
                 //call playAgain function
                 playAgain();
@@ -230,7 +230,7 @@ var playAgain = function(){
         playAgainIn --;
         if (playAgainIn === 0) {
             clearInterval(interval);
-            questionEl.textContent = "Would you like to play again " + playerName + "?";
+            questionEl.textContent = "Would you like to take the quiz again " + playerName + "?";
 
             //create two buttons: Play Again and See Highest scores
 
@@ -252,3 +252,8 @@ if run out of questions, remove buttons and call endQuiz.
 */
 
 //must add buttons to play again
+/* 
+create 2 buttons - 'Play Again' and 'View Highest Score'
+Play Again reloads index.html page
+View Highest Score loads scores.html page
+*/
