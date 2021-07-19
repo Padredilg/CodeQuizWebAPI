@@ -4,19 +4,59 @@ var buttonsEl = document.querySelector("#buttons");
 var timerEl = document.querySelector("#timer");
 var questionEl = document.querySelector("#question");
 var sectionTitleEl = document.querySelector("#section-title");
+var inputBoxEl = document.querySelector("#input-name");
+var formEl = document.querySelector("#collect-name");
 
-var playerName;
+var playerName = "";
 var finalScore = 0;
-var timeRemaining = 0;
+//var currentQuestion = -1;
+var timeLeft = 5;
+var questionsArr = [
+    {
+        question: 'Commonly used data types do NOT include:',
+        answers: ['strings', 'booleans', 'alerts', 'numbers'],
+        correct: 'alerts'
+    },
+    {
+        question: 'The condition in an if/else statement is enclosed within _____.',
+        answers: ['quotation marks', 'curly brackets', 'parenthesis', 'square brackets'],
+        correct: 'parentheses'
+    },
+    {
+        question: 'Arrays in JavaScript can be used to store _____.',
+        answers: ['numbers and strings', 'other arrays', 'booleans', 'all of the above'],
+        correct: 'all of the above'
+    },
+    {
+        question: 'String values must be enclosed within _____ when being assigned to variables.',
+        answers: ['commas', 'curly brackets', 'quotation marks', 'parenthesis'],
+        correct: 'quotation marks'
+    },
+    {
+        question: 'A very useful tool used during development and debugging for printing content to the debugger is:',
+        answers: ['JavaScript', 'terminal/bash', 'for loops', 'console.log'],
+        correct: 'console.log'
+    },
+]
+
+
+var getPlayerName = function(event){
+    event.preventDefault();//forces the page not to reload at the end of function
+    playerName = document.querySelector("input[id='input-name']").value;
+
+    //when takeQuizBtn is clicked, check to see if  the player name space is empty,
+    if(!playerName){
+        questionEl.textContent = "You must choose a name!";
+        return false;//this makes function stop
+    }
+
+    console.log(playerName);
+
+    formEl.remove();
+    startQuiz();
+};
 
 var startQuiz = function() {
-    //remove takeQuiz button
-    takeQuizBtn.remove();
-
-    //call getPlayerName for player to input name
-    playerName = getPlayerName();
-    //remove input box
-
     questionEl.textContent = "Quiz starts in 3";
 
     var startingIn = 3;
@@ -36,102 +76,15 @@ var startQuiz = function() {
     },1000);   
 }
 
-//make this function work!
-var questions = function(){
-
-    var numQuestions = 4;
-    var choice1El;
-    var choice2El;
-    var choice3El;
-    var choice4El;
-    //loop through questions and collect answers for score;
-    //maybe logic for score is to add an eventListener in each case and then use if statement to 
-    //compare if clicked was the right choice, then inside the if include the image and add to score
-    //eventually add logic to randomize question order and choices order
-    for(var i=1; i<=numQuestions; i++){
-        switch (i) {
-            case 1:
-                questionEl.textContent = "Sample Question 1";
-                sectionTitleEl.textContent = "Q " + i + "/" + numQuestions;
-                document.getElementById("brain").src="./assets/images/thinking-brain.png";
-
-                //button 1                
-                choice1El = document.createElement("button");
-                choice1El.id = "tent-1";
-                choice1El.className = "choice";
-                choice1El.textContent = "Sample Button 1";
-                choice1El.setAttribute("option", "correct");
-                buttonsEl.appendChild(choice1El);
-                
-                //button 2               
-                choice2El = document.createElement("button");
-                choice2El.id = "tent-2";
-                choice2El.className = "choice";
-                choice2El.textContent = "Sample Button 2";
-                choice2El.setAttribute("option", "incorrect");
-                buttonsEl.appendChild(choice2El);
-
-                //button 3          
-                choice3El = document.createElement("button");
-                choice3El.id = "tent-3";
-                choice3El.className = "choice";
-                choice3El.textContent = "Sample Button 3";
-                choice3El.setAttribute("option", "incorrect");
-                buttonsEl.appendChild(choice3El);
-
-                //button 4
-                choice4El = document.createElement("button");
-                choice4El.id = "tent-4";
-                choice4El.className = "choice";
-                choice4El.textContent = "Sample Button 4";
-                choice4El.setAttribute("option", "incorrect");
-                buttonsEl.appendChild(choice4El);
-
-                //how to trap user in case 1 until he clicks a choice?
-                
-                break;
-            case 2:
-                questionEl.textContent = "Sample Question 2";
-                sectionTitleEl.textContent = "Q " + i + "/" + numQuestions;
-                
-                break;
-            case 3:
-                questionEl.textContent = "Sample Question 3";
-                sectionTitleEl.textContent = "Q " + i + "/" + numQuestions;
-
-                break;
-            case 4:
-                questionEl.textContent = "Sample Question 4";
-                sectionTitleEl.textContent = "Q " + i + "/" + numQuestions;
-
-                break;
-          }
-    }
-
-    // questionEl.textContent = "Sample Question 1";
-
-    // var choiceEl = document.createElement("button")
-    // choiceEl.className = "choice";
-    // choiceEl.textContent = "Sample Button";
-
-    // buttonsEl.appendChild(choiceEl);
-}
-
 var startTimer = function(){
     timerEl.textContent = "Time Left: 60s";
 
-    var timeLeft = 2;
     var interval = setInterval(function(){
         timeLeft --;
         if (timeLeft === 0) {
             clearInterval(interval);
             //remove timer
             timerEl.remove();
-            //change question to time's up!
-            questionEl.className = "ending-text";
-            questionEl.textContent = "Oops! Time's Up!"
-            //include logic to remove all buttons
-
             //call endQuiz function
             endQuiz();
         }
@@ -141,34 +94,133 @@ var startTimer = function(){
     },1000);
 }
 
+var questions = function(){
+    //create buttons and append to buttonsEl
+}
+// var questions = function(){
+
+//     var numQuestions = 4;
+//     var choice1El;
+//     var choice2El;
+//     var choice3El;
+//     var choice4El;
+//     //maybe logic for score is to add an eventListener in each case and then use if statement to 
+//     //compare if clicked was the right choice, then inside the if include the image and add to score
+//     //eventually add logic to randomize question order and choices order
+//     for(var i=1; i<=numQuestions; i++){
+//         switch (i) {
+//             case 1:
+//                 questionEl.textContent = "Sample Question 1";
+//                 sectionTitleEl.textContent = "Q " + i + "/" + numQuestions;
+//                 document.getElementById("brain").src="./assets/images/thinking-brain.png";
+
+//                 //button 1                
+//                 choice1El = document.createElement("button");
+//                 choice1El.id = "tent-1";
+//                 choice1El.className = "choice";
+//                 choice1El.textContent = "Sample Button 1";
+//                 choice1El.setAttribute("option", "correct");
+//                 buttonsEl.appendChild(choice1El);
+                
+//                 //button 2               
+//                 choice2El = document.createElement("button");
+//                 choice2El.id = "tent-2";
+//                 choice2El.className = "choice";
+//                 choice2El.textContent = "Sample Button 2";
+//                 choice2El.setAttribute("option", "incorrect");
+//                 buttonsEl.appendChild(choice2El);
+
+//                 //button 3          
+//                 choice3El = document.createElement("button");
+//                 choice3El.id = "tent-3";
+//                 choice3El.className = "choice";
+//                 choice3El.textContent = "Sample Button 3";
+//                 choice3El.setAttribute("option", "incorrect");
+//                 buttonsEl.appendChild(choice3El);
+
+//                 //button 4
+//                 choice4El = document.createElement("button");
+//                 choice4El.id = "tent-4";
+//                 choice4El.className = "choice";
+//                 choice4El.textContent = "Sample Button 4";
+//                 choice4El.setAttribute("option", "incorrect");
+//                 buttonsEl.appendChild(choice4El);
+
+//                 //how to trap user in case 1 until he clicks a choice?
+                
+//                 break;
+//             case 2:
+//                 questionEl.textContent = "Sample Question 2";
+//                 sectionTitleEl.textContent = "Q " + i + "/" + numQuestions;
+                
+//                 break;
+//             case 3:
+//                 questionEl.textContent = "Sample Question 3";
+//                 sectionTitleEl.textContent = "Q " + i + "/" + numQuestions;
+
+//                 break;
+//             case 4:
+//                 questionEl.textContent = "Sample Question 4";
+//                 sectionTitleEl.textContent = "Q " + i + "/" + numQuestions;
+
+//                 break;
+//           }
+//     }
+
+//     // questionEl.textContent = "Sample Question 1";
+
+//     // var choiceEl = document.createElement("button")
+//     // choiceEl.className = "choice";
+//     // choiceEl.textContent = "Sample Button";
+
+//     // buttonsEl.appendChild(choiceEl);
+// }
+
 var endQuiz = function(){
-    var endingIn = 4;
-    var interval = setInterval(function(){
-        endingIn --;
-        if (endingIn === 0) {
-            clearInterval(interval);
-            questionEl.textContent = "Thank you for playing " + playerName + "! Your final score was " + finalScore + "!";
+    var endingIn = 3;
+    questionEl.className = "ending-text";
 
-            //call recordData
-            //recordData(playerName, score);
+    if(timeLeft>0){
+        questionEl.textContent = "Congratulations for finishing the quiz!"
+        var interval = setInterval(function(){
+            endingIn --;
+            if (endingIn === 0) {
+                clearInterval(interval);
+                questionEl.textContent = "Thank you for playing " + playerName + "! Your final score was " + finalScore + "!";
 
-            //call playAgain function
-            playAgain();
-        }
-    },1000);
+                //call recordData
+                recordData(playerName, finalScore);
+
+                //call playAgain function
+                playAgain();
+            }
+        },1000);
+    }
+    else{
+        questionEl.textContent = "Oops! Time's Up!"
+        var interval = setInterval(function(){
+            endingIn --;
+            if (endingIn === 0) {
+                clearInterval(interval);
+                questionEl.textContent = "Thank you for playing " + playerName + "! Your final score was " + finalScore + "!";
+
+                //call recordData
+                recordData(playerName, finalScore);
+
+                //call playAgain function
+                playAgain();
+            }
+        },1000);
+    }
+
+    
 }
 
-var getPlayerName = function(){
-
-    var nameInputed = "JanPeasant";
-    //name must be between 1 and 12 chars
-
-    //create input box to collect name from user.
-
-    return nameInputed;
+var recordData = function(name, score){
+    console.log(name + score)
+    localStorage.setItem("name", name);
+    localStorage.setItem("score", score);
 };
-
-//var recordData = function(){};
 
 var playAgain = function(){
     var playAgainIn = 5;
@@ -185,7 +237,7 @@ var playAgain = function(){
 };
 
 //when Take Quiz is clicked, Start Quiz
-takeQuizBtn.addEventListener("click", startQuiz);
+formEl.addEventListener("submit", getPlayerName);
 
 //We can make a prepare yourself countdown when quiz will start,
 //and only then quiz starts and timer starts

@@ -112,10 +112,6 @@ main h1{
     align-items: center;
 }
 
-#take-quiz {
-    margin-top: 30px;
-}
-
 .choice {
     background: var(--primary-color);
     padding: 6px 15px;
@@ -131,6 +127,27 @@ main h1{
 .choice:hover {
     color: var(--primary-color);
     background: var(--tertiary-color);
+}
+
+#collect-name input{
+    border: 1px solid rgba(0, 0, 0, 0.35);
+    border-radius: 11px;
+    display: block;
+    padding: 7px 15px;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.875);
+    width: 35%;
+    margin: 1% auto;
+    background-color: rgba(255,255,255,0.4);
+}
+
+#collect-name input:focus{
+    background-color: rgba(255,255,255,.73);
+    outline: none;
+}
+
+#collect-name input::placeholder{
+    color: rgba(0, 0, 0, .5);
 }
 
 footer {
@@ -165,5 +182,22 @@ footer h4 {
 .ending-text{
     transform: scale(2);
     color: var(--tertiary-color);
-    margin-bottom: 15px;
+    margin-bottom: 30px;
+}
+
+.scores-list {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: center;
+}
+
+.scores-list li{
+    color: black;
+    width: fit-content;
+    list-style: none;
+    margin: 0 0 10px 0;
 }
