@@ -81,14 +81,14 @@ main h1{
     justify-content: center;
 }
 
-.quiz-container h2{
+#section-title{
     color: var(--tertiary-color);
     margin: 0 auto 25px auto;
     text-align: center;
 }
 
 .quiz-container img{
-    width: 20vw;
+    width: 220px;
     margin: 5px auto 30px auto;
 }
 
@@ -110,6 +110,10 @@ main h1{
     flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
+}
+
+#take-quiz {
+    margin-top: 30px;
 }
 
 .choice {
@@ -149,4 +153,11 @@ footer h4 {
     font-style: italic;
     font-weight: normal;
     color: var(--tertiary-color);
+}
+
+#timer {
+    padding: 0px 9px;
+    color: var(--tertiary-color);
+    position: fixed;
+    right: 5px;
 }
