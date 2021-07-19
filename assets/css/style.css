@@ -90,6 +90,11 @@ main h1{
     margin: 5px auto 50px auto;
 }
 
+.quiz-container div h3 {
+    margin: 0 0 15px 0;
+    color: var(--primary-color);
+}
+
 #take-quiz {
     background: var(--primary-color);
     padding: 7px 15px;
@@ -105,6 +110,21 @@ main h1{
     background: var(--tertiary-color);
 }
 
+.choice {
+    background: var(--primary-color);
+    padding: 7px 15px;
+    border-radius: 12px;
+    border: none;
+    font-family: 'Alata';
+    font-size: 1.5em;
+    color: var(--tertiary-color);
+}
+
+.choice:hover {
+    color: var(--primary-color);
+    background: var(--tertiary-color);
+}
+
 footer {
     display: flex;
     flex-wrap: wrap;
@@ -115,14 +135,14 @@ footer {
     bottom:0;
     left:0;
     right:0;
-    height:50px;
-    background: linear-gradient(0deg, rgb(70 58 255 / 80%), transparent);
+    height:38px;
+    background: var(--primary-color);
 }
 
 footer h4 {
-    margin: 25px auto 10px auto;
+    margin: 15px auto 10px auto;
     font-size: 1.1em;
     font-style: italic;
     font-weight: normal;
-    color: black;
+    color: var(--tertiary-color);
 }
