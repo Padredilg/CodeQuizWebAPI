@@ -12,27 +12,27 @@ var finalScore = 0;
 //var currentQuestion = -1;
 var timeLeft = 2;
 var questionsArr = [
-    {
+    {//questionsArr[0]
         question: 'Commonly used data types do NOT include:',
         answers: ['strings', 'booleans', 'alerts', 'numbers'],
         correct: 'alerts'
     },
-    {
+    {//questionsArr[1]
         question: 'The condition in an if/else statement is enclosed within _____.',
         answers: ['quotation marks', 'curly brackets', 'parenthesis', 'square brackets'],
         correct: 'parentheses'
     },
-    {
+    {//questionsArr[2]
         question: 'Arrays in JavaScript can be used to store _____.',
         answers: ['numbers and strings', 'other arrays', 'booleans', 'all of the above'],
         correct: 'all of the above'
     },
-    {
+    {//questionsArr[3]
         question: 'String values must be enclosed within _____ when being assigned to variables.',
         answers: ['commas', 'curly brackets', 'quotation marks', 'parenthesis'],
         correct: 'quotation marks'
     },
-    {
+    {//questionsArr[4]
         question: 'A very useful tool used during development and debugging for printing content to the debugger is:',
         answers: ['JavaScript', 'terminal/bash', 'for loops', 'console.log'],
         correct: 'console.log'
@@ -49,8 +49,6 @@ var getPlayerName = function(event){
         questionEl.textContent = "You must choose a name!";
         return false;//this makes function stop
     }
-
-    console.log(playerName);
 
     formEl.remove();
     startQuiz();
@@ -243,5 +241,14 @@ var playAgain = function(){
 //when Take Quiz is clicked, Start Quiz
 formEl.addEventListener("submit", getPlayerName);
 
-//We can make a prepare yourself countdown when quiz will start,
-//and only then quiz starts and timer starts
+//must fix questions
+/* 
+Questions need to create 4 buttons
+At each question, the buttons will contain the current index - possible answers. only one matches the correct
+At each turn, if correct is clicked, add score + change image
+if incorrect is clicked, decrease time + change image
+
+if run out of questions, remove buttons and call endQuiz.
+*/
+
+//must add buttons to play again
