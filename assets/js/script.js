@@ -384,7 +384,8 @@ var createLastButtons = function(){
 
 formEl.addEventListener("submit", getPlayerName);
 
-/*
+/*Improve high Scores css
+
 transform highScores in list
 */
 

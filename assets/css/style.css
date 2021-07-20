@@ -104,9 +104,10 @@ main h1{
     align-items: center;
 }
 
-.questions-wrapper h3 {
+#question {
     margin: 0 0 15px 0;
     color: var(--primary-color);
+    font-size: 1.5em;
 }
 
 #buttons{
@@ -168,6 +169,7 @@ main h1{
     justify-content: space-around;
     align-items: center;
     width: 60%;
+    margin: 10px 0 0 0;
 }
 
 footer {
@@ -200,9 +202,7 @@ footer h4 {
 }
 
 .ending-text{
-    transform: scale(2);
-    color: var(--tertiary-color);
-    margin-bottom: 30px;
+    transform: scale(1.5);
 }
 
 .scores-list {
