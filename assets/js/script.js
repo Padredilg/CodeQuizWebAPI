@@ -44,6 +44,9 @@ var choice2El;
 var choice3El;
 var choice4El;
 
+var numCorrects = 0;
+var numIncorrects = 0;
+
 
 var getPlayerName = function(event){
     event.preventDefault();//forces the page not to reload at the end of function
@@ -75,7 +78,7 @@ var startQuiz = function() {
             //fill buttons with first set of answers and calls fillQuestions inside of it
             fillButtons();//Buttons receive textContent that matches the questtionArr[currentQuestion].answers
             //Change brain image for the first time
-            brainEl.src="./assets/images/thinking-brain.png";
+            changeBrainImg();
             //fill question title and question
             questions();
         }
@@ -90,7 +93,7 @@ var startTimer = function(){
 
     var interval = setInterval(function(){
         timeLeft --;
-        if (timeLeft === 0) {
+        if (timeLeft <= 0) {
             clearInterval(interval);
             //remove timer
             timerEl.remove();
@@ -221,18 +224,61 @@ var check4 = function(){
 };
 
 var correct = function(){
+    //reward
     finalScore += 20;
-    //say right under the buttons div
+    numCorrects++;
+    //say under div that choice was correct
+    
+    //change brain image accordingly
+    changeBrainImg();
 }
 
 var incorrect = function(){
+    //punishment
     timeLeft -= 10;
-    //say wrong under the buttons div
+    numIncorrects++;//increase num of incorrects
+    //say under div that choice was incorrect
+
+    //change brain image accordingly
+    changeBrainImg();
+}
+
+var changeBrainImg = function(){
+
+    if(numCorrects + numIncorrects == 5 && finalScore == 0){
+        brainEl.src="./assets/images/sick-brain.png";
+    }
+    else if(numCorrects + numIncorrects == 5){
+        brainEl.src="./assets/images/super-brain.png";
+    }
+    else if(numCorrects - numIncorrects == 0){
+        brainEl.src="./assets/images/thinking-brain.png";
+    }
+    else if(numCorrects - numIncorrects == 1){
+        brainEl.src="./assets/images/happy-brain.png";
+    }
+    else if(numCorrects - numIncorrects == 2){
+        brainEl.src="./assets/images/meditating-brain.png";
+    }
+    else if(numCorrects - numIncorrects == 3){
+        brainEl.src="./assets/images/strong-brain.png";
+    }
+    else if(numCorrects - numIncorrects == -1){
+        brainEl.src="./assets/images/tired-brain.png";
+    }
+    else if(numCorrects - numIncorrects == -2){
+        brainEl.src="./assets/images/sad-brain.png";
+    }
+    else if(numCorrects - numIncorrects == -3){
+        brainEl.src="./assets/images/angry-brain.png";
+    }
 }
 
 var endQuiz = function(){
 
     buttonsEl.remove();
+
+    changeBrainImg();
 
     var endingIn = 3;
     questionEl.className = "ending-text";
@@ -241,12 +287,13 @@ var endQuiz = function(){
     recordData();
 
     if(timeLeft>0){
-        questionEl.textContent = "Congratulations for finishing the quiz!"
+        questionEl.textContent = "You finished the quiz! Let's see how many points you got..."
         var interval = setInterval(function(){
             endingIn --;
             if (endingIn === 0) {
                 clearInterval(interval);
-                questionEl.textContent = "Thank you for taking the quiz " + playerName + "! Your final score was " + finalScore + "!";
+
+                checkFinalScore();
 
                 //call playAgain function
                 playAgain();
@@ -259,7 +306,8 @@ var endQuiz = function(){
             endingIn --;
             if (endingIn === 0) {
                 clearInterval(interval);
-                questionEl.textContent = "Thank you for taking the quiz " + playerName + "! Your final score was " + finalScore + "!";
+
+                checkFinalScore();
 
                 //call playAgain function
                 playAgain();
@@ -269,6 +317,15 @@ var endQuiz = function(){
 
     
 }
+
+var checkFinalScore = function(){
+    if(finalScore > 0){
+        questionEl.textContent = "Congratulations"  + playerName +  "! Your final score is " + finalScore + "!";
+    }
+    else{
+        questionEl.textContent = "Well"  + playerName +  "! Your final score is " + finalScore + "... You need more practice!";
+    }
+};
 
 var recordData = function(){
     var lastScore = localStorage.getItem("score");
@@ -281,7 +338,7 @@ var recordData = function(){
         localStorage.setItem("name", playerName);
         localStorage.setItem("score", finalScore);
     }
-}
+};
 
 var playAgain = function(){
     var playAgainIn = 5;
@@ -303,14 +360,12 @@ formEl.addEventListener("submit", getPlayerName);
 
 
 
-//must fix questions
-/* 
+/*fix image change
+in correct() and in incorrect() functions
+*/
 
-At each question, the buttons will contain the current index - possible answers. only one matches the correct
-At each turn, if correct is clicked, add score + change image
-if incorrect is clicked, decrease time + change image
-
-if run out of questions, remove buttons and call endQuiz.
+/*
+transform highScores in list
 */
 
 //must add buttons to play again
@@ -320,4 +375,10 @@ Play Again reloads index.html page
 View Highest Score loads scores.html page
 */
 
-//Stop the timer when all questions are asked
+/* Update Read Me - Look at Ryan's
+figure out how to include entire page as an image
+ */
+
+/*
+create instructions page
+*/
