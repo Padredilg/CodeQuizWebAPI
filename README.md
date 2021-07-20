@@ -10,7 +10,7 @@ I created this personalized coding quiz for the fourth challenge of UCF's Coding
 * CSS
 * JavaScript
 
-jQuery and Bootstrap were not used.
+- jQuery and Bootstrap were not used.
 
 ## Website
 https://padredilg.github.io/CodeQuizWebAPI/
