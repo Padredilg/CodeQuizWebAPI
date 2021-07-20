@@ -89,7 +89,8 @@ main h1{
     color: var(--tertiary-color);
     margin: 0 auto 25px auto;
     text-align: center;
-    transform: scale(1.6);
+    font-size: 3vw;
+    width: 85%;
 }
 
 #brain{
@@ -113,7 +114,8 @@ main h1{
 #question {
     margin: 15px 0 15px 0;
     color: var(--primary-color);
-    font-size: 1.5em;
+    width: 85%;
+    font-size: 2.6vw;
 }
 
 #buttons{
@@ -169,12 +171,12 @@ main h1{
 
 #last-buttons {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     align-content: center;
     justify-content: space-around;
     align-items: center;
-    width: 60%;
+    width: 100%;
     margin: 10px 0 0 0;
 }
 
@@ -207,10 +209,6 @@ footer h4 {
     right: 5px;
 }
 
-.ending-text{
-    transform: scale(1.5);
-}
-
 .scores-list {
     width: 30%;
     display: flex;
@@ -232,8 +230,54 @@ footer h4 {
 .highscores-buttons {
     width: 100%;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
 .highscores-buttons a{
-    margin: 0 10px;
+    margin: 0 0 15px 0;
 }
+
+/* MEDIA QUERY FOR SMALLER DESKTOP SCREENS AND SMALLER*/
+@media screen and (max-width: 980px){
+
+    #section-title {
+        font-size: 3.6vw;
+    }
+
+    #question{
+        font-size: 3.4vw;
+    }
+
+    #collect-name input{
+        width: 65%
+    }
+
+    .choice {
+        width: 65%
+    }
+
+};
+
+/*MEDIA QUERY FOR TABLETS AND SMALLER*/
+/* @media screen and (max-width: 768px){
+}; */
+
+/*MEDIA QUERY FOR BIG MOBILE PHONES*/
+/* @media screen and (max-width: 575px){
+    footer{
+        position: static;
+        height: 0;
+        margin: 10px 0 0 0;
+    }
+
+    footer h4{
+        font-size: 2.9vw;
+    }
+} */
+
+/*MEDIA QUERY FOR BIG MOBILE PHONES*/
+/* @media screen and (max-width: 450px){
+} */

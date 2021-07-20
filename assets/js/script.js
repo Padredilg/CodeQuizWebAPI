@@ -324,8 +324,6 @@ var endQuiz = function(){
     recordData();//Save Highest score
     buttonsEl.remove();
 
-    questionEl.className = "ending-text";
-
     //if finished before time was up
     if(timeLeft>0){
         sectionTitleEl.textContent = "All questions have been answered!";
@@ -434,12 +432,7 @@ formEl.addEventListener("submit", getPlayerName);
 
 /*
 To Do:
-- Transform Highest Score Page in a list with highest scores 
-    - Then create button to save score only if player wants
-    - Create delete option for each recorded score, like in taskinator
+- Update Read ME
+- Check Github issues
 
-- Create quiz instructions
-
-- Include more questions
-    - Then adjust time and reward/punishment for right/wrong choice picked
 */
