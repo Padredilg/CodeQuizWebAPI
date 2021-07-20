@@ -63,7 +63,7 @@ var getPlayerName = function(event){
 };
 
 var startQuiz = function() {
-    sectionTitleEl.textContent = "Good Luck!";
+    sectionTitleEl.textContent = "Good Luck " + playerName + "!";
     questionEl.textContent = "Quiz starts in 3";
 
     var startingIn = 3;
@@ -94,16 +94,16 @@ var startTimer = function(){
 
     var interval = setInterval(function(){
         timeLeft --;
-        if (timeLeft <= 0) {
+        if(currQuestion>=questionsArr.length){
+            clearInterval(interval);
+            timerEl.remove();
+        }
+        else if (timeLeft <= 0) {
             clearInterval(interval);
             //remove timer
             timerEl.remove();
             //call endQuiz function
             endQuiz();
-        }
-        else if(currQuestion>=questionsArr.length){
-            clearInterval(interval);
-            timerEl.remove();
         }
         else{
             timerEl.textContent = "Time Left: " + timeLeft + "s";
@@ -293,7 +293,7 @@ var endQuiz = function(){
             if (endingIn === 0) {
                 clearInterval(interval);
 
-                sectionTitleEl.textContent = "I hope that you may have enjoyed my Code Quiz!";
+                sectionTitleEl.textContent = "I hope you enjoyed my Code Quiz!";
                 questionEl.textContent = "Calculating your score...";
 
                 playAgain();
@@ -309,7 +309,7 @@ var endQuiz = function(){
             if (endingIn === 0) {
                 clearInterval(interval);
 
-                sectionTitleEl.textContent = "I hope that you may have enjoyed my Code Quiz!";
+                sectionTitleEl.textContent = "I hope you enjoyed my Code Quiz!";
                 questionEl.textContent = "Calculating your score...";
 
                 playAgain();
@@ -352,7 +352,7 @@ var checkScore = function(){
         sectionTitleEl.textContent = "Congratulations "  + playerName +  "! Your final score is " + finalScore + "!";
     }
     else{
-        sectionTitleEl.textContent = "Well"  + playerName +  "! Your final score is " + finalScore + "... You need more practice!";
+        sectionTitleEl.textContent =  playerName +  ", your final score is " + finalScore + "... You need more practice!";
     }
 };
 
@@ -398,3 +398,5 @@ figure out how to include entire page as an image
 /*
 create instructions
 */
+
+//when final score is 0 change brain to tired brain on final image
