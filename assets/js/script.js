@@ -63,6 +63,7 @@ var getPlayerName = function(event){
 };
 
 var startQuiz = function() {
+    sectionTitleEl.textContent = "Good Luck!";
     questionEl.textContent = "Quiz starts in 3";
 
     var startingIn = 3;
@@ -280,20 +281,23 @@ var endQuiz = function(){
 
     changeBrainImg();
 
-    var endingIn = 3;
+    var endingIn = 5;
     questionEl.className = "ending-text";
 
     //call recordData
     recordData();
 
     if(timeLeft>0){
+        sectionTitleEl.textContent = "All questions have been answered!";
         questionEl.textContent = "You finished the quiz! Let's see how many points you got..."
+        
         var interval = setInterval(function(){
             endingIn --;
             if (endingIn === 0) {
                 clearInterval(interval);
 
-                checkFinalScore();
+                sectionTitleEl.textContent = "I hope that you may have enjoyed my Code Quiz!";
+                questionEl.textContent = "Calculating your score...";
 
                 //call playAgain function
                 playAgain();
@@ -301,13 +305,15 @@ var endQuiz = function(){
         },1000);
     }
     else{
+        sectionTitleEl.textContent = "You ran out of time!";
         questionEl.textContent = "Oops! Time's Up!"
         var interval = setInterval(function(){
             endingIn --;
             if (endingIn === 0) {
                 clearInterval(interval);
 
-                checkFinalScore();
+                sectionTitleEl.textContent = "I hope that you may have enjoyed my Code Quiz!";
+                questionEl.textContent = "Calculating your score...";
 
                 //call playAgain function
                 playAgain();
@@ -317,15 +323,6 @@ var endQuiz = function(){
 
     
 }
-
-var checkFinalScore = function(){
-    if(finalScore > 0){
-        questionEl.textContent = "Congratulations"  + playerName +  "! Your final score is " + finalScore + "!";
-    }
-    else{
-        questionEl.textContent = "Well"  + playerName +  "! Your final score is " + finalScore + "... You need more practice!";
-    }
-};
 
 var recordData = function(){
     var lastScore = localStorage.getItem("score");
@@ -341,17 +338,32 @@ var recordData = function(){
 };
 
 var playAgain = function(){
-    var playAgainIn = 5;
+    var playAgainIn = 6;
     var interval = setInterval(function(){
         playAgainIn --;
         if (playAgainIn === 0) {
             clearInterval(interval);
-            questionEl.textContent = "Would you like to take the quiz again " + playerName + "?";
+
+            checkScore();
+
+            brainEl.src="./assets/images/smart-brain.png";
+
+            questionEl.textContent = "Play Again?"
 
             //create two buttons: Play Again and See Highest scores
+            //createLastButtons();
 
         }
     },1000);
+};
+
+var checkScore = function(){
+    if(finalScore > 0){
+        sectionTitleEl.textContent = "Congratulations "  + playerName +  "! Your final score is " + finalScore + "!";
+    }
+    else{
+        sectionTitleEl.textContent = "Well"  + playerName +  "! Your final score is " + finalScore + "... You need more practice!";
+    }
 };
 
 //when Take Quiz is clicked, Start Quiz
@@ -359,10 +371,6 @@ formEl.addEventListener("submit", getPlayerName);
 
 
 
-
-/*fix image change
-in correct() and in incorrect() functions
-*/
 
 /*
 transform highScores in list
@@ -380,5 +388,5 @@ figure out how to include entire page as an image
  */
 
 /*
-create instructions page
+create instructions
 */
