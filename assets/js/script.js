@@ -1,4 +1,4 @@
-//this var represents the Take Quiz button
+//element pointers
 var takeQuizBtn = document.querySelector("#take-quiz");
 var buttonsEl = document.querySelector("#buttons");
 var timerEl = document.querySelector("#timer");
@@ -7,10 +7,11 @@ var sectionTitleEl = document.querySelector("#section-title");
 var inputBoxEl = document.querySelector("#input-name");
 var formEl = document.querySelector("#collect-name");
 var brainEl = document.getElementById("brain");
+var notifyEl = document.querySelector("#notifier");
 
+//player info + questions variables
 var playerName = "";
 var finalScore = 0;
-var timeLeft = 60;
 var questionsArr = [
     {//questionsArr[0]
         question: 'Commonly used data types do NOT include:',
@@ -38,22 +39,31 @@ var questionsArr = [
         correct: 'console.log'
     },
 ]
+
+//possible answers variables
 var currQuestion = 0;
 var choice1El;
 var choice2El;
 var choice3El;
 var choice4El;
 
+//timer variables
+var timeLeft = 60;
+var endingIn = 6;
+var playAgainIn = 6;
+
+//reward or punishment variables
 var numCorrects = 0;
 var numIncorrects = 0;
 
-
+//function declaration starts
 var getPlayerName = function(event){
     event.preventDefault();//forces the page not to reload at the end of function
     playerName = document.querySelector("input[id='input-name']").value;
 
     //when takeQuizBtn is clicked, check to see if  the player name space is empty,
     if(!playerName){
+        brainEl.src="./assets/images/angry-brain.png";
         questionEl.textContent = "You must choose a name!";
         return false;//this makes function stop
     }
@@ -64,6 +74,7 @@ var getPlayerName = function(event){
 
 var startQuiz = function() {
     sectionTitleEl.textContent = "Good Luck " + playerName + "!";
+    brainEl.src="./assets/images/happy-brain.png";
     questionEl.textContent = "Quiz starts in 3";
 
     var startingIn = 3;
@@ -87,7 +98,7 @@ var startQuiz = function() {
             questionEl.textContent = "Quiz starts in " + startingIn;
         }
     },1000);   
-}
+};
 
 var startTimer = function(){
     timerEl.textContent = "Time Left: 60s";
@@ -113,7 +124,7 @@ var startTimer = function(){
             timerEl.textContent = "Time Left: " + timeLeft + "s";
         }
     },1000);
-}
+};
 
 var choices = function(){
     // Apparently this if statement is not needed since we have the one in the fill buttons function
@@ -231,9 +242,10 @@ var correct = function(){
     //reward
     finalScore += 20;
     numCorrects++;
-    //say under div that choice was correct
-    
-    //change brain image accordingly
+    numIncorrects = 0;
+    //notifier says under img whether the choice picked was correct or not
+    notifier(true);
+
     changeBrainImg();
 };
 
@@ -241,18 +253,33 @@ var incorrect = function(){
     //punishment
     timeLeft -= 10;
     numIncorrects++;//increase num of incorrects
-    //say under div that choice was incorrect
-
-    //change brain image accordingly
+    numCorrects = 0;
+    //notifier says under img whether the choice picked was correct or not
+    notifier(false);
+    
     changeBrainImg();
+};
+
+var notifier = function(option){
+
+    //include timer for how long this shows up
+
+    if(option){
+        //say correct under image
+        notifyEl.textContent = "Correct!";
+    }
+    else{
+        //say wrong under image
+        notifyEl.textContent = "Wrong!";
+    }
 };
 
 var changeBrainImg = function(){
 
-    if(numCorrects + numIncorrects == 5 && finalScore == 0){
+    if(currQuestion == 5 && finalScore == 0){
         brainEl.src="./assets/images/tired-brain.png";
     }
-    else if(numCorrects + numIncorrects == 5){
+    else if(currQuestion == 5){
         brainEl.src="./assets/images/super-brain.png";
     }
     else if(numCorrects - numIncorrects == 0){
@@ -264,39 +291,39 @@ var changeBrainImg = function(){
     else if(numCorrects - numIncorrects == 2){
         brainEl.src="./assets/images/meditating-brain.png";
     }
-    else if(numCorrects - numIncorrects == 3){
+    else if(numCorrects - numIncorrects >= 3){
         brainEl.src="./assets/images/strong-brain.png";
     }
     else if(numCorrects - numIncorrects == -1){
-        brainEl.src="./assets/images/tired-brain.png";
-    }
-    else if(numCorrects - numIncorrects == -2){
         brainEl.src="./assets/images/sad-brain.png";
     }
-    else if(numCorrects - numIncorrects == -3){
+    else if(numCorrects - numIncorrects == -2){
         brainEl.src="./assets/images/angry-brain.png";
+    }
+    else if(numCorrects - numIncorrects <= -3){
+        brainEl.src="./assets/images/sick-brain.png";
     }
 };
 
 var endQuiz = function(){
     recordData();//Save Highest score
     buttonsEl.remove();
-    brainEl.src="./assets/images/thinking-brain.png";
 
-    var endingIn = 5;
     questionEl.className = "ending-text";
 
     //if finished before time was up
     if(timeLeft>0){
         sectionTitleEl.textContent = "All questions have been answered!";
+        brainEl.src="./assets/images/meditating-brain.png";
         questionEl.textContent = "You finished the quiz! Let's see how many points you got..."
         
         var interval = setInterval(function(){
-            endingIn --;
+            endingIn --;//variable declared in top of file
             if (endingIn === 0) {
                 clearInterval(interval);
 
                 sectionTitleEl.textContent = "I hope you enjoyed my Code Quiz!";
+                brainEl.src="./assets/images/thinking-brain.png";
                 questionEl.textContent = "Calculating your score...";
 
                 playAgain();
@@ -306,6 +333,7 @@ var endQuiz = function(){
     //if time's up
     else{
         sectionTitleEl.textContent = "You ran out of time!";
+        brainEl.src="./assets/images/sad-brain.png";
         questionEl.textContent = "Oops! Time's Up!"
         var interval = setInterval(function(){
             endingIn --;
@@ -313,6 +341,7 @@ var endQuiz = function(){
                 clearInterval(interval);
 
                 sectionTitleEl.textContent = "I hope you enjoyed my Code Quiz!";
+                brainEl.src="./assets/images/thinking-brain.png";
                 questionEl.textContent = "Calculating your score...";
 
                 playAgain();
@@ -335,9 +364,8 @@ var recordData = function(){
 };
 
 var playAgain = function(){
-    var playAgainIn = 6;
     var interval = setInterval(function(){
-        playAgainIn --;
+        playAgainIn --;//variable declared in top of file
         if (playAgainIn === 0) {
             clearInterval(interval);
 
@@ -384,11 +412,16 @@ var createLastButtons = function(){
     newButtonsDiv.appendChild(viewScoresButton);
     //link one to index.html and another to scores.html
 };
+//function declaration ends
+
 
 formEl.addEventListener("submit", getPlayerName);
 
 /*
 To Do:
-- Transform Highest Score Page in a list with highest scores
+- Transform Highest Score Page in a list with highest scores 
+    - Then create button to save score only if player wants
+    - Create delete option for each recorded score, like in taskinator
+
 - Create quiz instructions
 */

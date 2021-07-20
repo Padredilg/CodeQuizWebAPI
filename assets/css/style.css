@@ -94,7 +94,14 @@ main h1{
 
 #brain{
     height: 185px;
-    margin: 5px auto 30px auto;
+    margin: 0px auto 0 auto;
+}
+
+#notifier {
+    margin: 25px 0 0 0;
+    color: var(--tertiary-color);
+    width: 200px;
+    font-size: 20px;
 }
 
 #questions-wrapper{
@@ -105,7 +112,7 @@ main h1{
 }
 
 #question {
-    margin: 0 0 15px 0;
+    margin: 15px 0 15px 0;
     color: var(--primary-color);
     font-size: 1.5em;
 }
@@ -221,4 +228,13 @@ footer h4 {
     width: fit-content;
     margin: 0 0 10px 0;
     font-size: 3vw;
+}
+
+.highscores-buttons {
+    width: 100%;
+    text-align: center;
+}
+
+.highscores-buttons a{
+    margin: 0 10px;
 }
