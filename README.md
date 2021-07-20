@@ -3,8 +3,7 @@
 # Code Quiz Web-API :pencil:
 
 ## :label: Description
-Challenge #4 - UCF's Coding Bootcamp.</br>
-In this Challenge I had to create a Code Quiz using only HTML, CSS, and JavaScript.
+This is a Code Quiz that I created using HTML, CSS, and JavaScript.
 
 ## :scroll: Instructions
 The quiz consists of a few code related questions. </br>
