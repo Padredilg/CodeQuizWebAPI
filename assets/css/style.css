@@ -94,11 +94,10 @@ main h1{
 
 #brain{
     height: 185px;
-    margin: 0px auto 0 auto;
+    margin: 0px auto 15px auto;
 }
 
 #notifier {
-    margin: 25px 0 0 0;
     color: var(--tertiary-color);
     width: 200px;
     font-size: 20px;

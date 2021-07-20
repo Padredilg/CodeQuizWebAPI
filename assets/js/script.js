@@ -9,6 +9,12 @@ var formEl = document.querySelector("#collect-name");
 var brainEl = document.getElementById("brain");
 var notifyEl = document.querySelector("#notifier");
 
+//timer variables
+var timeLeft = 60;
+var stopNotificationIn = 1;//if change this time, update if statement in notifier();
+var endingIn = 6;
+var playAgainIn = 6;
+
 //player info + questions variables
 var playerName = "";
 var finalScore = 0;
@@ -46,11 +52,6 @@ var choice1El;
 var choice2El;
 var choice3El;
 var choice4El;
-
-//timer variables
-var timeLeft = 60;
-var endingIn = 6;
-var playAgainIn = 6;
 
 //reward or punishment variables
 var numCorrects = 0;
@@ -118,6 +119,7 @@ var startTimer = function(){
             //remove timer
             timerEl.remove();
             //call endQuiz function
+            currQuestion = questionsArr.length;
             endQuiz();
         }
         else{
@@ -261,17 +263,30 @@ var incorrect = function(){
 };
 
 var notifier = function(option){
-
-    //include timer for how long this shows up
-
+    //logic to notify
     if(option){
         //say correct under image
-        notifyEl.textContent = "Correct!";
+        notifyEl.textContent = "Correct! Score +10";
     }
     else{
         //say wrong under image
-        notifyEl.textContent = "Wrong!";
+        notifyEl.textContent = "Wrong! Time -10s";
     }
+
+    //logic to keep var stopNotificationIn on top of file
+    if(stopNotificationIn == 0){
+        stopNotificationIn++;
+    }
+
+    var interval = setInterval(function(){
+        stopNotificationIn --;//variable declared in top of file
+        if (stopNotificationIn === 0) {
+            clearInterval(interval);
+
+            notifyEl.textContent = "";
+            
+        }
+    },1000);
 };
 
 var changeBrainImg = function(){
@@ -424,4 +439,7 @@ To Do:
     - Create delete option for each recorded score, like in taskinator
 
 - Create quiz instructions
+
+- Include more questions
+    - Then adjust time and reward/punishment for right/wrong choice picked
 */
