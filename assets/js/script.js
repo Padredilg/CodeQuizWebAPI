@@ -276,17 +276,14 @@ var changeBrainImg = function(){
 }
 
 var endQuiz = function(){
-
+    recordData();//Save Highest score
     buttonsEl.remove();
-
     changeBrainImg();
 
     var endingIn = 5;
     questionEl.className = "ending-text";
 
-    //call recordData
-    recordData();
-
+    //if finished before time was up
     if(timeLeft>0){
         sectionTitleEl.textContent = "All questions have been answered!";
         questionEl.textContent = "You finished the quiz! Let's see how many points you got..."
@@ -299,11 +296,11 @@ var endQuiz = function(){
                 sectionTitleEl.textContent = "I hope that you may have enjoyed my Code Quiz!";
                 questionEl.textContent = "Calculating your score...";
 
-                //call playAgain function
                 playAgain();
             }
         },1000);
     }
+    //if time's up
     else{
         sectionTitleEl.textContent = "You ran out of time!";
         questionEl.textContent = "Oops! Time's Up!"
@@ -315,13 +312,10 @@ var endQuiz = function(){
                 sectionTitleEl.textContent = "I hope that you may have enjoyed my Code Quiz!";
                 questionEl.textContent = "Calculating your score...";
 
-                //call playAgain function
                 playAgain();
             }
         },1000);
     }
-
-    
 }
 
 var recordData = function(){
@@ -344,15 +338,11 @@ var playAgain = function(){
         if (playAgainIn === 0) {
             clearInterval(interval);
 
-            checkScore();
-
+            checkScore();//changes section title to score
             brainEl.src="./assets/images/smart-brain.png";
-
             questionEl.textContent = "Play Again?"
-
             //create two buttons: Play Again and See Highest scores
-            //createLastButtons();
-
+            createLastButtons();
         }
     },1000);
 };
@@ -366,26 +356,43 @@ var checkScore = function(){
     }
 };
 
-//when Take Quiz is clicked, Start Quiz
+var createLastButtons = function(){
+    //create two buttons: Play Again and See Highest scores
+
+    //create a div for new buttons
+    var newButtonsDiv = document.createElement("div");
+    //give this new div an id and style it to be flex, so the two new buttons may be side by side
+    newButtonsDiv.id = "last-buttons";
+    //append to <div id="questions-wrapper">
+    var questionsSectionWrapper = document.querySelector("#questions-wrapper");
+    questionsSectionWrapper.appendChild(newButtonsDiv);
+
+    //create two buttons with a tag and append to buttons div and give them class choice
+    var playAgainButton = document.createElement("a");
+    playAgainButton.className = "choice";
+    playAgainButton.textContent = "Play Again";
+    playAgainButton.href = "index.html"
+    newButtonsDiv.appendChild(playAgainButton);
+
+    var viewScoresButton = document.createElement("a");
+    viewScoresButton.className = "choice";
+    viewScoresButton.textContent = "View Highest Score";
+    viewScoresButton.href = "scores.html"
+    newButtonsDiv.appendChild(viewScoresButton);
+    //link one to index.html and another to scores.html
+};
+
 formEl.addEventListener("submit", getPlayerName);
-
-
-
 
 /*
 transform highScores in list
 */
 
-//must add buttons to play again
-/* 
-create 2 buttons - 'Play Again' and 'View Highest Score'
-Play Again reloads index.html page
-View Highest Score loads scores.html page
-*/
 
 /* Update Read Me - Look at Ryan's
 figure out how to include entire page as an image
- */
+*/
+
 
 /*
 create instructions
