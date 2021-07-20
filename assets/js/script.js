@@ -19,8 +19,8 @@ var questionsArr = [
     },
     {//questionsArr[1]
         question: 'The condition in an if/else statement is enclosed within _____.',
-        answers: ['quotation marks', 'curly brackets', 'parenthesis', 'square brackets'],
-        correct: 'parenthesis'
+        answers: ['quotation marks', 'curly brackets', 'square brackets', 'parentheses'],
+        correct: 'parentheses'
     },
     {//questionsArr[2]
         question: 'Arrays in JavaScript can be used to store _____.',
@@ -29,7 +29,7 @@ var questionsArr = [
     },
     {//questionsArr[3]
         question: 'String values must be enclosed within _____ when being assigned to variables.',
-        answers: ['commas', 'curly brackets', 'quotation marks', 'parenthesis'],
+        answers: ['commas', 'quotation marks', 'curly brackets', 'parentheses'],
         correct: 'quotation marks'
     },
     {//questionsArr[4]
@@ -77,11 +77,11 @@ var startQuiz = function() {
             //create Buttons
             createButtons();//Buttons are created and appended to #buttons div
             //fill buttons with first set of answers and calls fillQuestions inside of it
-            fillButtons();//Buttons receive textContent that matches the questtionArr[currentQuestion].answers
+            fillButtons();//Buttons receive textContent from questionArr[currentQuestion].answers
             //Change brain image for the first time
             changeBrainImg();
-            //fill question title and question
-            questions();
+            //calls function that waits for user to click a button
+            choices();
         }
         else{
             questionEl.textContent = "Quiz starts in " + startingIn;
@@ -95,10 +95,14 @@ var startTimer = function(){
     var interval = setInterval(function(){
         timeLeft --;
         if(currQuestion>=questionsArr.length){
+            //stop timer
             clearInterval(interval);
+            //remove timer
             timerEl.remove();
+            //endQuiz is being called from fillButton()
         }
         else if (timeLeft <= 0) {
+            //stop timer
             clearInterval(interval);
             //remove timer
             timerEl.remove();
@@ -111,13 +115,12 @@ var startTimer = function(){
     },1000);
 }
 
-var questions = function(){
-
-    //check if we are on last question already
-    if(currQuestion === questionsArr.length - 1){
-        endQuiz();
-        return;
-    }
+var choices = function(){
+    // Apparently this if statement is not needed since we have the one in the fill buttons function
+    // if(currQuestion === questionsArr.length - 1){
+    //     endQuiz();
+    //     return;
+    // }
     
     //How to distinguish between which button was clicked?
     choice1El.addEventListener("click", check1);
@@ -125,7 +128,7 @@ var questions = function(){
     choice3El.addEventListener("click", check3);
     choice4El.addEventListener("click", check4);
     //One way is assigning each one with a different function I guess...
-}
+};
 
 var createButtons = function(){
     //button 1                
@@ -147,7 +150,7 @@ var createButtons = function(){
     choice4El = document.createElement("button");
     choice4El.className = "choice";
     buttonsEl.appendChild(choice4El);
-}
+};
 
 var fillButtons = function(){
 
@@ -165,7 +168,7 @@ var fillButtons = function(){
     choice4El.textContent = questionsArr[currQuestion].answers[3];
 
     fillQuestions();
-}
+};
 
 var fillQuestions = function(){
     sectionTitleEl.textContent = "Q " + (currQuestion + 1) + "/" + questionsArr.length;
@@ -232,7 +235,7 @@ var correct = function(){
     
     //change brain image accordingly
     changeBrainImg();
-}
+};
 
 var incorrect = function(){
     //punishment
@@ -242,12 +245,12 @@ var incorrect = function(){
 
     //change brain image accordingly
     changeBrainImg();
-}
+};
 
 var changeBrainImg = function(){
 
     if(numCorrects + numIncorrects == 5 && finalScore == 0){
-        brainEl.src="./assets/images/sick-brain.png";
+        brainEl.src="./assets/images/tired-brain.png";
     }
     else if(numCorrects + numIncorrects == 5){
         brainEl.src="./assets/images/super-brain.png";
@@ -273,12 +276,12 @@ var changeBrainImg = function(){
     else if(numCorrects - numIncorrects == -3){
         brainEl.src="./assets/images/angry-brain.png";
     }
-}
+};
 
 var endQuiz = function(){
     recordData();//Save Highest score
     buttonsEl.remove();
-    changeBrainImg();
+    brainEl.src="./assets/images/thinking-brain.png";
 
     var endingIn = 5;
     questionEl.className = "ending-text";
@@ -316,7 +319,7 @@ var endQuiz = function(){
             }
         },1000);
     }
-}
+};
 
 var recordData = function(){
     var lastScore = localStorage.getItem("score");
@@ -339,7 +342,7 @@ var playAgain = function(){
             clearInterval(interval);
 
             checkScore();//changes section title to score
-            brainEl.src="./assets/images/smart-brain.png";
+            changeBrainImg();
             questionEl.textContent = "Play Again?"
             //create two buttons: Play Again and See Highest scores
             createLastButtons();
@@ -384,19 +387,8 @@ var createLastButtons = function(){
 
 formEl.addEventListener("submit", getPlayerName);
 
-/*Improve high Scores css
-
-transform highScores in list
-*/
-
-
-/* Update Read Me - Look at Ryan's
-figure out how to include entire page as an image
-*/
-
-
 /*
-create instructions
+To Do:
+- Transform Highest Score Page in a list with highest scores
+- Create quiz instructions
 */
-
-//when final score is 0 change brain to tired brain on final image

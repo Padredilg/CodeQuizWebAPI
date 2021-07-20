@@ -92,8 +92,8 @@ main h1{
     transform: scale(1.6);
 }
 
-.quiz-container img{
-    width: 220px;
+#brain{
+    height: 185px;
     margin: 5px auto 30px auto;
 }
 
@@ -211,12 +211,14 @@ footer h4 {
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     align-content: center;
+    margin: 0 0 30px 0;
 }
 
 .scores-list h2{
     color: black;
     width: fit-content;
     margin: 0 0 10px 0;
+    font-size: 3vw;
 }

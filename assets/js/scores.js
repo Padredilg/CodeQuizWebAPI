@@ -1,7 +1,8 @@
 var highestName = document.querySelector('#nameHS');
 var highestScore = document.querySelector('#scoreHS');
+var clearHS = document.querySelector('#clear');
 
-function renderLastRegistered() {
+var renderLastRegistered = function(){
     // TODO: Retrieve the last name and score from localStorage
     var lastName = localStorage.getItem("name");
     if(lastName === null){
@@ -15,8 +16,11 @@ function renderLastRegistered() {
 
     highestName.textContent = "Name: " + lastName;
     highestScore.textContent = "Score: " + lastScore;
-  }
+};
+
+var clearScores = function(){
+    localStorage.clear();
+};
 
   renderLastRegistered();
-
-  
+  clearHS.addEventListener("click", clearScores);
