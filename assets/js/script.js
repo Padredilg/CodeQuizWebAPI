@@ -242,7 +242,7 @@ var check4 = function(){
 
 var correct = function(){
     //reward
-    finalScore += 20;
+    finalScore += 15;
     numCorrects++;
     numIncorrects = 0;
     //notifier says under img whether the choice picked was correct or not
@@ -266,7 +266,7 @@ var notifier = function(option){
     //logic to notify
     if(option){
         //say correct under image
-        notifyEl.textContent = "Correct! Score +10";
+        notifyEl.textContent = "Correct! Score +15";
     }
     else{
         //say wrong under image
@@ -291,7 +291,7 @@ var notifier = function(option){
 
 var changeBrainImg = function(){
 
-    if(currQuestion == 5 && finalScore == 0){
+    if(currQuestion == 5 && finalScore <= 45){
         brainEl.src="./assets/images/tired-brain.png";
     }
     else if(currQuestion == 5){
@@ -321,8 +321,9 @@ var changeBrainImg = function(){
 };
 
 var endQuiz = function(){
-    recordData();//Save Highest score
     buttonsEl.remove();
+    finalScore += timeLeft;
+    recordData();//Save Highest score
 
     //if finished before time was up
     if(timeLeft>0){
@@ -366,20 +367,23 @@ var endQuiz = function(){
 var recordData = function(){
     var lastScore = localStorage.getItem("score");
 
+    //if no previous highscore, set the new one as highest
     if(lastScore === null){
         localStorage.setItem("name", playerName);
         localStorage.setItem("score", finalScore);
     }
+    //if new one is higher than previous, set new one as highest
     else if(finalScore > lastScore){
         localStorage.setItem("name", playerName);
         localStorage.setItem("score", finalScore);
     }
+    //else, dont change anything.
 };
 
 var playAgain = function(){
     var interval = setInterval(function(){
         playAgainIn --;//variable declared in top of file
-        if (playAgainIn === 0) {
+        if (playAgainIn <= 0) {
             clearInterval(interval);
 
             checkScore();//changes section title to score
@@ -392,7 +396,8 @@ var playAgain = function(){
 };
 
 var checkScore = function(){
-    if(finalScore > 0){
+
+    if(finalScore > 45){
         sectionTitleEl.textContent = "Congratulations "  + playerName +  "! Your final score is " + finalScore + "!";
     }
     else{
@@ -432,7 +437,6 @@ formEl.addEventListener("submit", getPlayerName);
 
 /*
 To Do:
-- Update Read ME
 - Check Github issues
 
 */
