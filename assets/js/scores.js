@@ -19,6 +19,15 @@ var renderLastRegistered = function(){
 };
 
 var clearScores = function(){
+    var lastScore = localStorage.getItem("score");
+    if(lastScore === null){
+        return false;
+    }
+
+    var makeSure = confirm("This will reset the highscore. Are you sure you want to continue?");
+    if(!makeSure){
+        return false;
+    }
     localStorage.clear();
 };
 
