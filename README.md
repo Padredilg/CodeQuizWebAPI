@@ -1,6 +1,6 @@
 # Luiz Guilherme Padredi
 
-# Code Quiz Web-API :pencil:
+# Code Quiz :pencil:
 
 ## :label: Description
 This is a Code Quiz that I created using HTML, CSS, and JavaScript.
@@ -18,7 +18,7 @@ If the user's score is the new highest score, then the user's name and score wil
 jQuery and Bootstrap were not used.
 
 ## :desktop_computer: Website
-Link to Website: https://padredilg.github.io/CodeQuizWebAPI/
+Link to Website: https://padredilg.github.io/code-quiz/
 </br></br>
 Screenshot from Website:
 ![screenshot of website](./assets/images/live-code-website-ss.png)
