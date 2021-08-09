@@ -18,7 +18,6 @@ If the user's score is the new highest score, then the user's name and score wil
 :heavy_check_mark: HTML</br>
 :heavy_check_mark: CSS</br>
 :heavy_check_mark: JavaScript</br></br>
-jQuery and Bootstrap were not used.
 
 ## :desktop_computer: Website
 Link to Website: https://padredilg.github.io/code-quiz/
